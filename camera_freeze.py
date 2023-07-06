@@ -15,9 +15,11 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-c", "--camera", type=int, default=1, help="ID of real webcam device (default: 1)")
 parser.add_argument("-x", "--width", type=int, default=1280, help="Preferred width for both cameras (default: 1280)")
 parser.add_argument("-y", "--height", type=int, default=720, help="Preferred height for both cameras (default: 720)")
-parser.add_argument("-fi", "--fps-in", type=int, default=30, help="Preferred FPS in for real camera (default: 30)")
-parser.add_argument("-fo", "--fps-out", type=int, default=30, help="FPS out for virtual camera (default: 30)")
-parser.add_argument("-pk", "--pause-key", default="#", help="Key used to pause the virtual camera (default: #)")
+parser.add_argument("-i", "--fps-in", type=int, default=30, help="Preferred FPS in for real camera (default: 30)")
+parser.add_argument("-o", "--fps-out", type=int, default=30, help="FPS out for virtual camera (default: 30)")
+parser.add_argument("-k", "--pause-key", default="#", help="Key used to pause the virtual camera (default: #)")
+parser.add_argument('-m', '--mjpeg', default=True, action='store_true', help="Use MJPEG (default: True)")
+parser.add_argument('--no-mjpeg', dest='mjpeg', action='store_false')
 args = parser.parse_args()
 
 alive = True
@@ -40,6 +42,9 @@ def start_camera():
     pref_fps_in = args.fps_in
     vc.set(cv2.CAP_PROP_FRAME_WIDTH, pref_width)
     vc.set(cv2.CAP_PROP_FRAME_HEIGHT, pref_height)
+    if args.mjpeg:
+        # https://stackoverflow.com/a/40067019/19020549 https://stackoverflow.com/a/65185716/19020549
+        vc.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter.fourcc('M', 'J', 'P', 'G'))
     vc.set(cv2.CAP_PROP_FPS, pref_fps_in)
 
     # Query final capture device values (may be different from preferred settings).
