@@ -1,4 +1,4 @@
-![Example](./.github/img/example.webm)
+![Example](./.github/img/example.mp4)
 
 # Camera Freeze
 
