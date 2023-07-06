@@ -1,0 +1,5 @@
+altgraph==0.17.3
+keyboard==0.13.5
+numpy==1.25.0
+opencv-python==4.8.0.74
+pyvirtualcam==0.10.2
