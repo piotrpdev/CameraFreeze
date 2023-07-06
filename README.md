@@ -1,4 +1,4 @@
-![Example](./.github/img/example.mp4)
+https://github.com/piotrpdev/CameraFreeze/assets/99439005/0e4653de-4831-4c02-8173-520c1484ea43
 
 # Camera Freeze
 
