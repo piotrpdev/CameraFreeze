@@ -73,20 +73,13 @@ def start_camera():
             cam.sleep_until_next_frame()
 
 
-def listen_for_key():
-    while alive:
-        try:
-            if keyboard.is_pressed(args.pause_key):
-                global pause
-                pause = not pause
-                logging.info('Camera {}'.format('paused' if pause else 'un-paused'))
-                time.sleep(0.3)
-        except:
-            logging.error("Something went wrong with the key listener")
+def listen_for_key(key_event):
+    global pause
+    pause = not pause
+    logging.info('Camera {}'.format('paused' if pause else 'un-paused'))
 
 
 camera_thread = threading.Thread(target=start_camera)
-key_thread = threading.Thread(target=listen_for_key)
 
 
 def exit_safely(signal, frame):
@@ -105,8 +98,8 @@ if __name__ == '__main__':
     # https://webcamtests.com/viewer
     signal.signal(signal.SIGINT, exit_safely)
 
+    keyboard.on_release_key(args.pause_key, listen_for_key)
+
     camera_thread.start()
-    key_thread.start()
 
     camera_thread.join()
-    key_thread.join()
