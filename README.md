@@ -1,4 +1,4 @@
-https://github.com/piotrpdev/CameraFreeze/assets/99439005/0e4653de-4831-4c02-8173-520c1484ea43
+https://github.com/piotrpdev/CameraFreeze/assets/99439005/2728ba13-7dd3-4139-afaf-f5df4a306986
 
 # Camera Freeze
 
