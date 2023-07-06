@@ -35,7 +35,6 @@ def start_camera():
     if not vc.isOpened():
         logging.error('Could not open video source')
         exit_safely(None, None)
-        return
 
     pref_width = args.width
     pref_height = args.height
@@ -63,7 +62,8 @@ def start_camera():
             # Read frame from webcam.
             ret, frame = vc.read()
             if not ret:
-                raise RuntimeError('Error fetching frame')
+                logging.error('Error fetching frame')
+                exit_safely(None, None)
 
             # Send to virtual cam.
             if not pause:
